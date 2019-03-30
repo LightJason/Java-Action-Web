@@ -31,7 +31,7 @@
     <!-- project meta information -->
     <name>LightJason AgentSpeak(L++) - Web Action</name>
     <description>AgentSpeak(L++) action for web structure</description>
-    <url>https://github.com/LightJason/AgentSpeak</url>
+    <url>https://github.com/LightJason/Java-Action-Web</url>
     
     <organization>
         <name>LightJason</name>
@@ -51,9 +51,9 @@
     </issueManagement>
     
     <scm>
-        <url>https://github.com/LightJason/Action-Web</url>
-        <connection>scm:git:git://github.com:LightJason/Action-Web.git</connection>
-        <developerConnection>scm:git:git@github.com:LightJason/Action-Web.git</developerConnection>
+        <url>https://github.com/LightJason/Java-Action-Web</url>
+        <connection>scm:git:git://github.com:LightJason/Java-Action-Web.git</connection>
+        <developerConnection>scm:git:git@github.com:LightJason/Java-Action-Web.git</developerConnection>
         <tag>v0.0.1</tag>
     </scm>
     
