@@ -93,7 +93,7 @@
     D = .collection/list/get(D, 0);
     [N] =.. D;
 
-    .generic/print( "rest-service", X );
+    .test/print( "rest-service", X );
     .test/result( .bool/or( .bool/equal( N, "elements" ), .bool/equal( N, "schemaLocation" ), .bool/equal( N, "location" ) ) )
 .
 
@@ -107,7 +107,7 @@
     M = .collection/list/get(M, 0);
     [L|_] =.. M;
 
-    .generic/print( "graphql-literal", X );
+    .test/print( "graphql-literal", X );
     .test/result( .bool/and( .bool/equal( N, "data" ), .bool/equal( L, "country" ) ) )
 .
 
@@ -115,13 +115,12 @@
  * check goal for graphql-fake native calls
  **/
 +graphql-fake-native(X) <-
-    generic/print(X);
     [_|D] =.. X;
     D = .collection/list/get(D, 0);
     [N|M] =.. D;
     M = .collection/list/get(M, 0);
     [L|_] =.. M;
 
-    .generic/print( "graphql-native", X );
+    .test/print( "graphql-native", X );
     .test/result( .bool/and( .bool/equal( N, "data" ), .bool/equal( L, "country" ) ) )
 .
