@@ -90,11 +90,11 @@
  **/
 +rest-service(X) <-
     [_|D] =.. X;
-    D = .collection/list/get(D, 0);
+    D = .test/list/get(D, 0);
     [N] =.. D;
 
     .test/print( "rest-service", X );
-    .test/result( .bool/or( .bool/equal( N, "elements" ), .bool/equal( N, "schemaLocation" ), .bool/equal( N, "location" ) ) )
+    .test/result( .test/or( .test/equal( N, "elements" ), .test/equal( N, "schemaLocation" ), .test/equal( N, "location" ) ) )
 .
 
 /**
@@ -102,13 +102,13 @@
  **/
 +graphql-fake-literal(X) <-
     [_|D] =.. X;
-    D = .collection/list/get(D, 0);
+    D = .test/list/get(D, 0);
     [N|M] =.. D;
-    M = .collection/list/get(M, 0);
+    M = .test/list/get(M, 0);
     [L|_] =.. M;
 
     .test/print( "graphql-literal", X );
-    .test/result( .bool/and( .bool/equal( N, "data" ), .bool/equal( L, "country" ) ) )
+    .test/result( .test/and( .test/equal( N, "data" ), .test/equal( L, "country" ) ) )
 .
 
 /**
@@ -116,11 +116,11 @@
  **/
 +graphql-fake-native(X) <-
     [_|D] =.. X;
-    D = .collection/list/get(D, 0);
+    D = .test/list/get(D, 0);
     [N|M] =.. D;
-    M = .collection/list/get(M, 0);
+    M = .test/list/get(M, 0);
     [L|_] =.. M;
 
     .test/print( "graphql-native", X );
-    .test/result( .bool/and( .bool/equal( N, "data" ), .bool/equal( L, "country" ) ) )
+    .test/result( .test/and( .test/equal( N, "data" ), .test/equal( L, "country" ) ) )
 .
