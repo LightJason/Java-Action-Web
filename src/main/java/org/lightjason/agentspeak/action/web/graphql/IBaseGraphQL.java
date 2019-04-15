@@ -114,7 +114,7 @@ public abstract class IBaseGraphQL extends IBaseWeb
             throw new UncheckedIOException( l_exception );
         }
 
-        return Stream.of();
+        return Stream.empty();
     }
 
     /**

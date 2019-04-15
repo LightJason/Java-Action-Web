@@ -84,7 +84,7 @@ public final class CXMLObject extends IBaseRest
                 )
             );
 
-            return Stream.of();
+            return Stream.empty();
         }
         catch ( final IOException l_exception )
         {
