@@ -35,6 +35,7 @@ import org.lightjason.agentspeak.language.ILiteral;
 import org.lightjason.agentspeak.language.ITerm;
 import org.lightjason.agentspeak.testing.IBaseTest;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public final class TestCActionWebGraphQL extends IBaseTest
     {
         try
         {
-            m_result = CLiteral.parse( "graphql( data( country ( code( 'DE' ), phone( '49' ), name( 'Germany' ), currency( 'EUR' ) ) ) )" );
+            m_result = CLiteral.parse( "graphql( data( country ( code, phone( '49' ), name( 'Germany' ), currency( 'EUR' ) ) ) )" );
         }
         catch ( final Exception l_exception )
         {
@@ -98,7 +99,7 @@ public final class TestCActionWebGraphQL extends IBaseTest
 
         Assert.assertEquals( 1, l_return.size() );
         Assert.assertTrue( l_return.get( 0 ) instanceof ILiteral );
-        Assert.assertEquals( m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
+        Assert.assertEquals( MessageFormat.format( "{0} - {1}", m_result, l_return ), m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
     }
 
 
@@ -126,7 +127,7 @@ public final class TestCActionWebGraphQL extends IBaseTest
 
         Assert.assertEquals( 1, l_return.size() );
         Assert.assertTrue( l_return.get( 0 ) instanceof ILiteral );
-        Assert.assertEquals( m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
+        Assert.assertEquals( MessageFormat.format( "{0} - {1}", m_result, l_return ), m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
     }
 
 }
