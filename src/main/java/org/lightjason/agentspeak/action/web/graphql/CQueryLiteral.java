@@ -45,7 +45,7 @@ import java.util.stream.Stream;
  *
  * {@code L = generic/type/parseliteral( "allUsers(id, firstName, lastName)" ); GQ = web/graphql/queryliteral( "https://fakerql.com/graphql", L, "graphql-fake" );}
  *
- * @see http://graphql.org/
+ * @see <a href="http://graphql.org/"></a>
  */
 public final class CQueryLiteral extends IBaseGraphQL
 {

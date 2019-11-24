@@ -44,9 +44,9 @@ import java.util.stream.Stream;
  *
  * {@code W = web/rest/xmlobject( "https://en.wikipedia.org/wiki/Special:Export/AgentSpeak", "wikipedia" );}
  *
- * @see https://en.wikipedia.org/wiki/Representational_state_transfer
- * @see https://en.wikipedia.org/wiki/Web_service
- * @see https://en.wikipedia.org/wiki/XML
+ * @see <a href="https://en.wikipedia.org/wiki/Representational_state_transfer"></a>
+ * @see <a href="https://en.wikipedia.org/wiki/Web_service"></a>
+ * @see <a href="https://en.wikipedia.org/wiki/XML"></a>
  */
 public final class CXMLObject extends IBaseRest
 {
