@@ -23,10 +23,10 @@
 
 package org.lightjason.agentspeak.action.web;
 
-import org.junit.Assert;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.lightjason.agentspeak.action.web.graphql.CQueryLiteral;
 import org.lightjason.agentspeak.action.web.graphql.CQueryNative;
 import org.lightjason.agentspeak.language.CLiteral;
@@ -38,6 +38,7 @@ import org.lightjason.agentspeak.testing.IBaseTest;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,7 +56,7 @@ public final class TestCActionWebGraphQL extends IBaseTest
     /**
      * initialize
      */
-    @Before
+    @BeforeEach
     public void initialize()
     {
         try
@@ -64,7 +65,7 @@ public final class TestCActionWebGraphQL extends IBaseTest
         }
         catch ( final Exception l_exception )
         {
-            Assert.fail( l_exception.getMessage() );
+            Assertions.fail( l_exception.getMessage() );
         }
     }
 
@@ -74,10 +75,10 @@ public final class TestCActionWebGraphQL extends IBaseTest
     @Test
     public void queryliteral()
     {
-        Assume.assumeNotNull( m_result );
+        Assumptions.assumeTrue( Objects.nonNull( m_result ) );
 
         final List<ITerm> l_return = new ArrayList<>();
-        Assert.assertTrue(
+        Assertions.assertTrue(
             execute(
                 new CQueryLiteral(),
                 false,
@@ -97,9 +98,9 @@ public final class TestCActionWebGraphQL extends IBaseTest
             )
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ) instanceof ILiteral );
-        Assert.assertEquals( MessageFormat.format( "{0} - {1}", m_result, l_return ), m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ) instanceof ILiteral );
+        Assertions.assertEquals( m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode(), MessageFormat.format( "{0} - {1}", m_result, l_return ) );
     }
 
 
@@ -109,10 +110,10 @@ public final class TestCActionWebGraphQL extends IBaseTest
     @Test
     public void querymanual()
     {
-        Assume.assumeNotNull( m_result );
+        Assumptions.assumeTrue( Objects.nonNull( m_result ) );
 
         final List<ITerm> l_return = new ArrayList<>();
-        Assert.assertTrue(
+        Assertions.assertTrue(
             execute(
                 new CQueryNative(),
                 false,
@@ -125,9 +126,9 @@ public final class TestCActionWebGraphQL extends IBaseTest
             )
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ) instanceof ILiteral );
-        Assert.assertEquals( MessageFormat.format( "{0} - {1}", m_result, l_return ), m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode() );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ) instanceof ILiteral );
+        Assertions.assertEquals( m_result.hashCode(), l_return.get( 0 ).<ILiteral>raw().hashCode(), MessageFormat.format( "{0} - {1}", m_result, l_return ) );
     }
 
 }

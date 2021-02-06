@@ -23,8 +23,8 @@
 
 package org.lightjason.agentspeak.action.web;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.lightjason.agentspeak.action.web.rest.CJsonList;
 import org.lightjason.agentspeak.action.web.rest.CJsonObject;
 import org.lightjason.agentspeak.action.web.rest.CXMLObject;
@@ -52,16 +52,18 @@ public final class TestCActionWebRest extends IBaseTest
     /**
      * test json list error
      */
-    @Test( expected = CExecutionIllegalStateException.class )
+    @Test
     public void jsonlisterror()
     {
-        new CJsonList().execute(
-            false,
-            IContext.EMPTYPLAN,
-            Stream.of( "jsonlist", "testjsonlist" )
-                  .map( CRawTerm::of )
-                  .collect( Collectors.toList() ),
-            Collections.emptyList()
+        Assertions.assertThrows( CExecutionIllegalStateException.class,
+                                 () -> new CJsonList().execute(
+                                    false,
+                                    IContext.EMPTYPLAN,
+                                    Stream.of( "jsonlist", "testjsonlist" )
+                                          .map( CRawTerm::of )
+                                          .collect( Collectors.toList() ),
+                                    Collections.emptyList()
+                                )
         );
     }
 
@@ -81,9 +83,9 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertFalse( l_return.isEmpty() );
-        Assert.assertTrue( l_return.stream().map( ITerm::raw ).allMatch( i -> i instanceof ILiteral ) );
-        Assert.assertTrue( l_return.stream().map( ITerm::<ILiteral>raw ).map( ITerm::functor ).allMatch( i -> i.equals( "testjsonlist" ) ) );
+        Assertions.assertFalse( l_return.isEmpty() );
+        Assertions.assertTrue( l_return.stream().map( ITerm::raw ).allMatch( i -> i instanceof ILiteral ) );
+        Assertions.assertTrue( l_return.stream().map( ITerm::<ILiteral>raw ).map( ITerm::functor ).allMatch( i -> i.equals( "testjsonlist" ) ) );
     }
 
 
@@ -103,27 +105,28 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
-        Assert.assertEquals( "testjsonlist", l_return.get( 0 ).<ILiteral>raw().functor() );
-        Assert.assertFalse( l_return.get( 0 ).<ILiteral>raw().values().map( ITerm::functor ).noneMatch( i -> i.equals( "item" ) ) );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
+        Assertions.assertEquals( "testjsonlist", l_return.get( 0 ).<ILiteral>raw().functor() );
+        Assertions.assertFalse( l_return.get( 0 ).<ILiteral>raw().values().map( ITerm::functor ).noneMatch( i -> i.equals( "item" ) ) );
     }
 
 
     /**
      * test json object error
      */
-    @Test( expected = CExecutionIllegalStateException.class )
+    @Test
     public void jsonobjecterror()
     {
-
-        new CJsonObject().execute(
-            false,
-            IContext.EMPTYPLAN,
-            Stream.of( "jsonobject", "testjsonobject" )
-                  .map( CRawTerm::of )
-                  .collect( Collectors.toList() ),
-            Collections.emptyList()
+        Assertions.assertThrows( CExecutionIllegalStateException.class,
+                                 () -> new CJsonObject().execute(
+                                    false,
+                                    IContext.EMPTYPLAN,
+                                    Stream.of( "jsonobject", "testjsonobject" )
+                                          .map( CRawTerm::of )
+                                          .collect( Collectors.toList() ),
+                                    Collections.emptyList()
+                                )
         );
     }
 
@@ -144,9 +147,9 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
-        Assert.assertEquals( "testjsonobject", l_return.get( 0 ).<ILiteral>raw().functor() );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
+        Assertions.assertEquals( "testjsonobject", l_return.get( 0 ).<ILiteral>raw().functor() );
     }
 
 
@@ -166,11 +169,11 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
-        Assert.assertEquals( "testjsonobject", l_return.get( 0 ).<ILiteral>raw().functor() );
-        Assert.assertTrue( l_return.get( 0 ).<ILiteral>raw().values().findFirst().isPresent() );
-        Assert.assertEquals(
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
+        Assertions.assertEquals( "testjsonobject", l_return.get( 0 ).<ILiteral>raw().functor() );
+        Assertions.assertTrue( l_return.get( 0 ).<ILiteral>raw().values().findFirst().isPresent() );
+        Assertions.assertEquals(
             "loc",
             l_return.get( 0 ).<ILiteral>raw().values().findFirst().map( ITerm::functor ).orElseThrow( IllegalArgumentException::new )
         );
@@ -180,16 +183,18 @@ public final class TestCActionWebRest extends IBaseTest
     /**
      * test xml object error
      */
-    @Test( expected = CExecutionIllegealArgumentException.class )
+    @Test
     public void xmlobjecterror()
     {
-        new CXMLObject().execute(
-            false,
-            IContext.EMPTYPLAN,
-            Stream.of( "xmlobject", "testxml" )
-                  .map( CRawTerm::of )
-                  .collect( Collectors.toList() ),
-            Collections.emptyList()
+        Assertions.assertThrows( CExecutionIllegealArgumentException.class,
+                                 () -> new CXMLObject().execute(
+                                    false,
+                                    IContext.EMPTYPLAN,
+                                    Stream.of( "xmlobject", "testxml" )
+                                          .map( CRawTerm::of )
+                                          .collect( Collectors.toList() ),
+                                    Collections.emptyList()
+                                )
         );
     }
 
@@ -210,9 +215,9 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
-        Assert.assertEquals( "testxml", l_return.get( 0 ).<ILiteral>raw().functor() );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
+        Assertions.assertEquals( "testxml", l_return.get( 0 ).<ILiteral>raw().functor() );
     }
 
 
@@ -232,11 +237,11 @@ public final class TestCActionWebRest extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
-        Assert.assertEquals( "testxml", l_return.get( 0 ).<ILiteral>raw().functor() );
-        Assert.assertTrue( l_return.get( 0 ).<ILiteral>raw().values().findFirst().isPresent() );
-        Assert.assertEquals(
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof ILiteral );
+        Assertions.assertEquals( "testxml", l_return.get( 0 ).<ILiteral>raw().functor() );
+        Assertions.assertTrue( l_return.get( 0 ).<ILiteral>raw().values().findFirst().isPresent() );
+        Assertions.assertEquals(
             "ncd",
             l_return.get( 0 ).<ILiteral>raw().values().findFirst().map( ITerm::functor ).orElseThrow( IllegalArgumentException::new )
         );
